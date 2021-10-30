@@ -29,6 +29,7 @@ def graph(x1, x2, y1, y2):
 
 
 def genetic_search(number_of_gens):
+    file = open("results/results.txt", "w")
     dots_for_plot = [[], []]
     gen = Generation()
     table = PrettyTable()
@@ -37,6 +38,8 @@ def genetic_search(number_of_gens):
     for i in range(number_of_gens + 1):
         gen = Generation.next_gen(gen)
         gen_to_table(gen, table, i, dots_for_plot)
+    output = table.get_string()
+    file.write(output)
     print(table)
     plt.plot(dots_for_plot[0], dots_for_plot[1], 'ro')
     plt.show()
